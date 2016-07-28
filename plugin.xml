@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+	<extension id="yawltest.yawl.graphics"
+		name="Yawl net graphical extensions"
+		point="org.pnml.tools.epnk.diagram.graphics">
+		<graphicsextension
+			class="yawltest.yawl.graphics.YAWLGraphics"
+			description="Special graphics for ... yawl event nets">
+		</graphicsextension>
+	</extension>
+</plugin>

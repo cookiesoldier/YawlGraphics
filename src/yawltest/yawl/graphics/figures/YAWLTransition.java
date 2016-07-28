@@ -39,31 +39,46 @@ public class YAWLTransition extends TransitionFigure {
 		graphics.setLineWidth(1);
 		int offSetX = width/5;
 		
-		graphics.drawLine(new Point(centerX-offSetX,shapeRect.getTopLeft().y), 
-				new Point(centerX-offSetX,shapeRect.getBottomLeft().y));
+		graphics.drawLine(new Point(centerX-offSetX/2,shapeRect.getTopLeft().y), 
+				new Point(centerX-offSetX/2,shapeRect.getBottomLeft().y));
+		
+		if(joinType == null){
+			return;
+		}
 		
 		switch (joinType.getText().getValue()) {
+	
 		case 0:
 			// AND
 			int[] cornerPoints = {shapeRect.getTopLeft().x(),shapeRect.getTopLeft().y(),
-					centerX-offSetX,centerY,
+					centerX-offSetX/2,centerY,
 					shapeRect.getBottomLeft().x(),shapeRect.getBottomLeft().y()};
 			graphics.drawPolygon(cornerPoints);
 			break;
 		case 1:
 			// OR
-
+			int[] cornerPoints1 = {shapeRect.getTopLeft().x(), centerY,
+					shapeRect.x+offSetX, shapeRect.getTopLeft().y(),
+					centerX-offSetX/2, centerY,
+					shapeRect.x+offSetX, shapeRect.getBottomLeft().y()};
+			graphics.drawPolygon(cornerPoints1);
 			break;
 		case 2:
 			// XOR
+			int[] cornerPoints2 = {centerX-offSetX/2,shapeRect.getTopLeft().y(),
+					shapeRect.getTopLeft().x(),centerY,
+					centerX-offSetX/2,shapeRect.getBottomLeft().y()};
+			graphics.drawPolygon(cornerPoints2);
 			break;
 
 		default:
 			break;
 		}
-
 		
-		graphics.drawLine(new Point(centerX+offSetX,shapeRect.getTopLeft().y), 	new Point(centerX+offSetX,shapeRect.getBottomLeft().y));
+		if(splitType == null){
+			return;
+		}
+		graphics.drawLine(new Point(centerX+offSetX/2,shapeRect.getTopLeft().y), 	new Point(centerX+offSetX/2,shapeRect.getBottomLeft().y));
 		switch (splitType.getText().getValue()) {
 		case 0:
 			// AND
@@ -73,12 +88,19 @@ public class YAWLTransition extends TransitionFigure {
 			graphics.drawPolygon(cornerPoints);
 			break;
 		case 1:
-			// OR
-
+			//OR
+			int[] cornerPoints1 = {shapeRect.getTopRight().x(), centerY,
+					shapeRect.x+width-offSetX, shapeRect.getTopRight().y(),
+					centerX+offSetX/2, centerY,
+					shapeRect.x+width-offSetX, shapeRect.getBottomRight().y()};
+			graphics.drawPolygon(cornerPoints1);
 			break;
 		case 2:
 			// XOR
-
+			int[] cornerPoints2 = {centerX+offSetX/2,shapeRect.getTopRight().y(),
+					shapeRect.getBottomRight().x,centerY,
+					centerX+offSetX/2,shapeRect.getBottomRight().y()};
+			graphics.drawPolygon(cornerPoints2);
 			break;
 		default:
 			break;

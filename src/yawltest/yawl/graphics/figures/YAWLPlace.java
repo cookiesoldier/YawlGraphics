@@ -18,18 +18,13 @@ public class YAWLPlace extends PlaceFigure {
 	
 	@Override
 	public void update(){
-
 		this.repaint();
 	}
 	
 	
 	@Override
 	protected void fillShape(Graphics graphics) {
-		
 		PlaceType type = ((Place) this.place).getType();
-		
-
-		
 		//Find bounding rect of the shape we draw.
 		Rectangle shapeRect = this.getClientArea();
 		//Find center of the rect

@@ -1,6 +1,7 @@
 package yawltest.yawl.graphics.figures;
 
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.pnml.tools.epnk.gmf.extensions.graphics.figures.TransitionFigure;
 
@@ -11,7 +12,6 @@ public class YAWLTransition extends TransitionFigure {
 
 	public YAWLTransition(Transition transition) {
 		super(transition);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -22,7 +22,6 @@ public class YAWLTransition extends TransitionFigure {
 	@Override
 	protected void fillShape(Graphics graphics) {
 		super.fillShape(graphics);
-		
 		
 		ControlType splitType = ((Transition) this.transition).getSplit();
 		ControlType joinType = ((Transition) this.transition).getJoin();
@@ -38,15 +37,18 @@ public class YAWLTransition extends TransitionFigure {
 		int centerY = shapeRect.y + height / 2;
 		
 		graphics.setLineWidth(1);
-
+		int offSetX = width/5;
+		
+		graphics.drawLine(new Point(centerX-offSetX,shapeRect.getTopLeft().y), 
+				new Point(centerX-offSetX,shapeRect.getBottomLeft().y));
+		
 		switch (joinType.getText().getValue()) {
 		case 0:
 			// AND
 			int[] cornerPoints = {shapeRect.getTopLeft().x(),shapeRect.getTopLeft().y(),
-					centerX,centerY,
+					centerX-offSetX,centerY,
 					shapeRect.getBottomLeft().x(),shapeRect.getBottomLeft().y()};
 			graphics.drawPolygon(cornerPoints);
-			graphics.drawRectangle(centerX-width/4, centerY-height/4, width/2, height/2);
 			break;
 		case 1:
 			// OR
@@ -60,12 +62,14 @@ public class YAWLTransition extends TransitionFigure {
 			break;
 		}
 
+		
+		graphics.drawLine(new Point(centerX+offSetX,shapeRect.getTopLeft().y), 	new Point(centerX+offSetX,shapeRect.getBottomLeft().y));
 		switch (splitType.getText().getValue()) {
 		case 0:
 			// AND
-			int[] cornerPoints = {shapeRect.getTopLeft().x(),shapeRect.getTopLeft().y(),
-					centerX,centerY,
-					shapeRect.getTopRight().x(),shapeRect.getTopRight().y()};
+			int[] cornerPoints = {shapeRect.getTopRight().x(),shapeRect.getTopRight().y(),
+					centerX+offSetX,centerY,
+					shapeRect.getBottomRight().x(),shapeRect.getBottomRight().y()};
 			graphics.drawPolygon(cornerPoints);
 			break;
 		case 1:

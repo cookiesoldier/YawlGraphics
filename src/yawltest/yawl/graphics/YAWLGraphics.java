@@ -33,6 +33,7 @@ public class YAWLGraphics extends GraphicalExtension {
 		if(netType.equals(YawlPackage.eINSTANCE.getYAWLNet())){
 			eclass.add(YawlPackage.eINSTANCE.getArc());
 			eclass.add(YawlPackage.eINSTANCE.getPlace());
+			eclass.add(YawlPackage.eINSTANCE.getTransition());
 		}
 		return eclass;
 		

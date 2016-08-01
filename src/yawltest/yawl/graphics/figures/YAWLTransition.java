@@ -83,7 +83,7 @@ public class YAWLTransition extends TransitionFigure {
 		case 0:
 			// AND
 			int[] cornerPoints = {shapeRect.getTopRight().x(),shapeRect.getTopRight().y(),
-					centerX+offSetX,centerY,
+					centerX+offSetX/2,centerY,
 					shapeRect.getBottomRight().x(),shapeRect.getBottomRight().y()};
 			graphics.drawPolygon(cornerPoints);
 			break;
